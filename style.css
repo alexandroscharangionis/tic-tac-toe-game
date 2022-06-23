@@ -23,6 +23,26 @@ body {
   justify-content: center;
 }
 
+.gameMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameMenu__players {
+  display: flex;
+  flex-direction: column;
+}
+
+.boardContainer {
+  display: flex;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100rem;
+}
+
 .boardGrid {
   display: grid;
   grid-template-columns: repeat(3, 14rem);
@@ -36,6 +56,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .symbol {

@@ -8,16 +8,25 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="boardGrid">
-      <div class="boardGrid__square"><span class="symbol"></span></div>
-      <div class="boardGrid__square"><span class="symbol"></span></div>
-      <div class="boardGrid__square"><span class="symbol"></span></div>
-      <div class="boardGrid__square"><span class="symbol"></span></div>
-      <div class="boardGrid__square"><span class="symbol"></span></div>
-      <div class="boardGrid__square"><span class="symbol"></span></div>
-      <div class="boardGrid__square"><span class="symbol"></span></div>
-      <div class="boardGrid__square"><span class="symbol"></span></div>
-      <div class="boardGrid__square"><span class="symbol"></span></div>
+    <div class="gameMenu">
+      <div class="gameMenu__players">
+        <span>Player X: <input type="text" placeholder="Your name..." /></span>
+        <span>Player O: <input type="text" placeholder="Your name..." /></span>
+      </div>
+      <button id="startGame">Start game</button>
+    </div>
+    <div class="boardContainer">
+      <div class="boardGrid">
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+        <div class="boardGrid__square"><span class="symbol"></span></div>
+      </div>
     </div>
 
     <script src="/script.js"></script>
