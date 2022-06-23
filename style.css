@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap");
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  font-size: 1.6rem;
+  font-family: "Roboto Mono", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 14rem);
+  grid-template-rows: repeat(3, 14rem);
+  gap: 2px;
+  background-color: #000;
+}
+
+.boardGrid__square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.symbol {
+  font-size: 6rem;
+}
