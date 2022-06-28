@@ -10,10 +10,30 @@
   <body>
     <div class="gameMenu">
       <div class="gameMenu__players">
-        <span>Player X: <input type="text" placeholder="Your name..." /></span>
-        <span>Player O: <input type="text" placeholder="Your name..." /></span>
+        <span class="error"></span>
+
+        <form action="#">
+          <span
+            >Player X:
+            <input
+              type="text"
+              name="playerName"
+              id="playerX"
+              placeholder="Your name..."
+              required
+          /></span>
+          <span
+            >Player O:
+            <input
+              type="text"
+              name="playerName"
+              id="playerO"
+              placeholder="Your name..."
+              required
+          /></span>
+          <input type="submit" id="startGame">Start game</input>
+        </form>
       </div>
-      <button id="startGame">Start game</button>
     </div>
     <div class="boardContainer">
       <div class="boardGrid">

@@ -9,14 +9,42 @@ const gameBoard = (() => {
   return { assignedSquares };
 })();
 
-// Factory function that generates a Player object with name, index, symbol (X or O) and methods.
-const Player = (playerName, playerIndex, playerSymbol) => {
+// Factory function that generates a Player object with name, symbol (X or O) and methods.
+const Player = (playerName, playerSymbol) => {
   function addMoveToBoard(position) {
-    gameBoard.assignedSquares[position] = playerSymbol;
+    gameBoard.assignedSquares[position.toString()] = playerSymbol;
   }
 
-  return { playerName, playerIndex, playerSymbol, addMoveToBoard };
+  return { playerName, playerSymbol, addMoveToBoard };
 };
 
-const aki = Player("Aki", 1, "X");
-const filip = Player("Filip", 2, "O");
+const startGameModule = (() => {
+  let players = [];
+  function startGame(event) {
+    event.preventDefault();
+    const errorMsg = document.querySelector(".error");
+    const inputPlayerX = document.getElementById("playerX").value;
+    const inputPlayerO = document.getElementById("playerO").value;
+    let playerX;
+    let playerO;
+    const boardContainer = document.querySelector(".boardContainer");
+    const gameMenu = document.querySelector(".gameMenu");
+    if (inputPlayerO && inputPlayerX) {
+      playerX = Player(`${inputPlayerX}`, "X");
+      playerO = Player(`${inputPlayerO}`, "O");
+      players.push(playerX);
+      players.push(playerO);
+
+      gameMenu.style.display = "none";
+      boardContainer.style.display = "block";
+      console.log(playerX, playerO);
+    } else {
+      errorMsg.textContent = "Fill in both names;";
+    }
+  }
+
+  return { startGame, players };
+})();
+
+const startGameBtn = document.getElementById("startGame");
+startGameBtn.addEventListener("click", startGameModule.startGame);
