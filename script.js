@@ -18,6 +18,8 @@ const Player = (playerName, playerSymbol) => {
   return { playerName, playerSymbol, addMoveToBoard };
 };
 
+// Module that returns an array with players and function that creates two players based on form input value and pushes them into previously mentioned array.
+
 const startGameModule = (() => {
   let players = [];
   function startGame(event) {
