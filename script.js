@@ -18,7 +18,7 @@ const Player = (playerName, playerSymbol) => {
   return { playerName, playerSymbol, addMoveToBoard };
 };
 
-// Module that returns an array with players and function that creates two players based on form input value and pushes them into previously mentioned array.
+// Module that returns an array with players and a function that creates two players based on form input value and pushes them into previously mentioned array.
 
 const startGameModule = (() => {
   let players = [];
@@ -56,15 +56,19 @@ startGameBtn.addEventListener("click", startGameModule.startGame);
 const gameBoardController = (() => {
   function playerMove(event) {
     if (startGameModule.activePlayer[0] === startGameModule.players[0]) {
+      if (event.target.textContent) {
+        return;
+      }
       startGameModule.players[0].addMoveToBoard(`${event.target.id}`);
       event.target.textContent = startGameModule.players[0].playerSymbol;
       startGameModule.activePlayer[0] = startGameModule.players[1];
-      // console.log(gameBoardMap.assignedSquares, startGameModule.activePlayer);
     } else if (startGameModule.activePlayer[0] === startGameModule.players[1]) {
+      if (event.target.textContent) {
+        return;
+      }
       startGameModule.players[1].addMoveToBoard(`${event.target.id}`);
       event.target.textContent = startGameModule.players[1].playerSymbol;
       startGameModule.activePlayer[0] = startGameModule.players[0];
-      // console.log(gameBoardMap.assignedSquares, startGameModule.activePlayer);
     }
   }
   return { playerMove };
