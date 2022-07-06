@@ -52,14 +52,84 @@ const startGameModule = (() => {
 const startGameBtn = document.getElementById("startGame");
 startGameBtn.addEventListener("click", startGameModule.startGame);
 
-// Module that returns a function that displays X/O on gameboard depending on current active player, and then updates the active player
+// Module that returns the playerMove function
 const gameBoardController = (() => {
+  let totalMoves = 0;
+  // Checks to see if three symbols are the same
+  function _symbolChecker(p1, p2, p3) {
+    if (p1 === p2 && p1 === p3) {
+      console.log("Somebody won");
+    }
+  }
+
+  // Checks to see if the three symbols that are the same are also in a row
+  function _checkForThreeInARow() {
+    console.log("I have been triggered");
+    _symbolChecker(
+      `${gameBoardMap.assignedSquares[0]}`,
+      `${gameBoardMap.assignedSquares[1]}`,
+      `${gameBoardMap.assignedSquares[2]}`
+    );
+    _symbolChecker(
+      `${gameBoardMap.assignedSquares[3]}`,
+      `${gameBoardMap.assignedSquares[4]}`,
+      `${gameBoardMap.assignedSquares[5]}`
+    );
+    _symbolChecker(
+      `${gameBoardMap.assignedSquares[6]}`,
+      `${gameBoardMap.assignedSquares[7]}`,
+      `${gameBoardMap.assignedSquares[8]}`
+    );
+    _symbolChecker(
+      `${gameBoardMap.assignedSquares[0]}`,
+      `${gameBoardMap.assignedSquares[3]}`,
+      `${gameBoardMap.assignedSquares[6]}`
+    );
+
+    _symbolChecker(
+      `${gameBoardMap.assignedSquares[1]}`,
+      `${gameBoardMap.assignedSquares[4]}`,
+      `${gameBoardMap.assignedSquares[7]}`
+    );
+    _symbolChecker(
+      `${gameBoardMap.assignedSquares[2]}`,
+      `${gameBoardMap.assignedSquares[5]}`,
+      `${gameBoardMap.assignedSquares[8]}`
+    );
+    _symbolChecker(
+      `${gameBoardMap.assignedSquares[0]}`,
+      `${gameBoardMap.assignedSquares[4]}`,
+      `${gameBoardMap.assignedSquares[8]}`
+    );
+    _symbolChecker(
+      `${gameBoardMap.assignedSquares[6]}`,
+      `${gameBoardMap.assignedSquares[4]}`,
+      `${gameBoardMap.assignedSquares[2]}`
+    );
+  }
+
+  // Displays X/O on gameboard depending on current active player, and then updates the active player.
   function playerMove(event) {
+    // Checks for winner/draw after certain number of moves.
+    function _checkForWinner() {
+      totalMoves++;
+      console.log(totalMoves);
+      if (totalMoves >= 5) {
+        _checkForThreeInARow();
+      }
+      if (totalMoves >= 8) {
+        console.log("Its a draw");
+      }
+    }
+
     if (startGameModule.activePlayer[0] === startGameModule.players[0]) {
       if (event.target.textContent) {
         return;
       }
+
       startGameModule.players[0].addMoveToBoard(`${event.target.id}`);
+      _checkForWinner();
+
       event.target.textContent = startGameModule.players[0].playerSymbol;
       startGameModule.activePlayer[0] = startGameModule.players[1];
     } else if (startGameModule.activePlayer[0] === startGameModule.players[1]) {
@@ -67,6 +137,7 @@ const gameBoardController = (() => {
         return;
       }
       startGameModule.players[1].addMoveToBoard(`${event.target.id}`);
+      _checkForWinner();
       event.target.textContent = startGameModule.players[1].playerSymbol;
       startGameModule.activePlayer[0] = startGameModule.players[0];
     }
