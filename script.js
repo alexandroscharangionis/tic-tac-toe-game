@@ -19,7 +19,6 @@ const Player = (playerName, playerSymbol) => {
 };
 
 // Module that returns an array with players and a function that creates two players based on form input value and pushes them into previously mentioned array.
-
 const startGameModule = (() => {
   let players = [];
   let activePlayer = [];
@@ -64,55 +63,109 @@ const gameBoardController = (() => {
       playerXMoves > playerOMoves
         ? console.log("Player X won")
         : console.log("Player O won");
-
-      console.log(document.getElementById(`${p1}`));
+      return true;
     }
   }
 
-  // Checks to see if the three symbols that are the same are also in a row
+  // Checks for each possible winning combo. If winner combo is found, symbols get special color.
   function _checkForThreeInARow() {
     console.log("I have been triggered");
-    _symbolChecker(
-      `${gameBoardMap.assignedSquares[0]}`,
-      `${gameBoardMap.assignedSquares[1]}`,
-      `${gameBoardMap.assignedSquares[2]}`
-    );
-    _symbolChecker(
-      `${gameBoardMap.assignedSquares[3]}`,
-      `${gameBoardMap.assignedSquares[4]}`,
-      `${gameBoardMap.assignedSquares[5]}`
-    );
-    _symbolChecker(
-      `${gameBoardMap.assignedSquares[6]}`,
-      `${gameBoardMap.assignedSquares[7]}`,
-      `${gameBoardMap.assignedSquares[8]}`
-    );
-    _symbolChecker(
-      `${gameBoardMap.assignedSquares[0]}`,
-      `${gameBoardMap.assignedSquares[3]}`,
-      `${gameBoardMap.assignedSquares[6]}`
-    );
 
-    _symbolChecker(
-      `${gameBoardMap.assignedSquares[1]}`,
-      `${gameBoardMap.assignedSquares[4]}`,
-      `${gameBoardMap.assignedSquares[7]}`
-    );
-    _symbolChecker(
-      `${gameBoardMap.assignedSquares[2]}`,
-      `${gameBoardMap.assignedSquares[5]}`,
-      `${gameBoardMap.assignedSquares[8]}`
-    );
-    _symbolChecker(
-      `${gameBoardMap.assignedSquares[0]}`,
-      `${gameBoardMap.assignedSquares[4]}`,
-      `${gameBoardMap.assignedSquares[8]}`
-    );
-    _symbolChecker(
-      `${gameBoardMap.assignedSquares[6]}`,
-      `${gameBoardMap.assignedSquares[4]}`,
-      `${gameBoardMap.assignedSquares[2]}`
-    );
+    if (
+      _symbolChecker(
+        `${gameBoardMap.assignedSquares[0]}`,
+        `${gameBoardMap.assignedSquares[1]}`,
+        `${gameBoardMap.assignedSquares[2]}`
+      )
+    ) {
+      document.getElementById("0").style.color = "red";
+      document.getElementById("1").style.color = "red";
+      document.getElementById("2").style.color = "red";
+    } else if (
+      _symbolChecker(
+        `${gameBoardMap.assignedSquares[3]}`,
+        `${gameBoardMap.assignedSquares[4]}`,
+        `${gameBoardMap.assignedSquares[5]}`
+      )
+    ) {
+      {
+        document.getElementById("3").style.color = "red";
+        document.getElementById("4").style.color = "red";
+        document.getElementById("5").style.color = "red";
+      }
+    } else if (
+      _symbolChecker(
+        `${gameBoardMap.assignedSquares[6]}`,
+        `${gameBoardMap.assignedSquares[7]}`,
+        `${gameBoardMap.assignedSquares[8]}`
+      )
+    ) {
+      {
+        document.getElementById("6").style.color = "red";
+        document.getElementById("7").style.color = "red";
+        document.getElementById("8").style.color = "red";
+      }
+    } else if (
+      _symbolChecker(
+        `${gameBoardMap.assignedSquares[0]}`,
+        `${gameBoardMap.assignedSquares[3]}`,
+        `${gameBoardMap.assignedSquares[6]}`
+      )
+    ) {
+      {
+        document.getElementById("0").style.color = "red";
+        document.getElementById("3").style.color = "red";
+        document.getElementById("6").style.color = "red";
+      }
+    } else if (
+      _symbolChecker(
+        `${gameBoardMap.assignedSquares[1]}`,
+        `${gameBoardMap.assignedSquares[4]}`,
+        `${gameBoardMap.assignedSquares[7]}`
+      )
+    ) {
+      {
+        document.getElementById("1").style.color = "red";
+        document.getElementById("4").style.color = "red";
+        document.getElementById("7").style.color = "red";
+      }
+    } else if (
+      _symbolChecker(
+        `${gameBoardMap.assignedSquares[2]}`,
+        `${gameBoardMap.assignedSquares[5]}`,
+        `${gameBoardMap.assignedSquares[8]}`
+      )
+    ) {
+      {
+        document.getElementById("2").style.color = "red";
+        document.getElementById("5").style.color = "red";
+        document.getElementById("8").style.color = "red";
+      }
+    } else if (
+      _symbolChecker(
+        `${gameBoardMap.assignedSquares[0]}`,
+        `${gameBoardMap.assignedSquares[4]}`,
+        `${gameBoardMap.assignedSquares[8]}`
+      )
+    ) {
+      {
+        document.getElementById("0").style.color = "red";
+        document.getElementById("4").style.color = "red";
+        document.getElementById("8").style.color = "red";
+      }
+    } else if (
+      _symbolChecker(
+        `${gameBoardMap.assignedSquares[6]}`,
+        `${gameBoardMap.assignedSquares[4]}`,
+        `${gameBoardMap.assignedSquares[2]}`
+      )
+    ) {
+      {
+        document.getElementById("6").style.color = "red";
+        document.getElementById("4").style.color = "red";
+        document.getElementById("2").style.color = "red";
+      }
+    } else return;
   }
 
   // Displays X/O on gameboard depending on current active player, and then updates the active player.
