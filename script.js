@@ -50,11 +50,6 @@ const startGameModule = (() => {
 
       playerXScore.textContent = "0";
       playerOScore.textContent = "0";
-      // document.querySelector(".player1Score").textContent =
-      //   gameBoardController.playerXScore;
-      // document.querySelector(".player2Score").textContent =
-      //   gameBoardController.playerOScore;
-      console.log(playerX, playerO);
     } else {
       errorMsg.textContent = "Fill in both names";
     }
@@ -93,13 +88,25 @@ const gameBoardController = (() => {
         scoreO++;
         startGameModule.playerOScore.textContent = scoreO;
       }
-      // playerXMoves > playerOMoves
-      //   ? (document.querySelector(
-      //       ".message"
-      //     ).textContent = `${startGameModule.players[0].playerName} won.`)
-      //   : (document.querySelector(
-      //       ".message"
-      //     ).textContent = `${startGameModule.players[1].playerName} won.`);
+
+      // Reset some variables in order to start new game but keep score
+      newGame.addEventListener("click", () => {
+        document.querySelector(".boardGrid").style.pointerEvents = "auto";
+        document.querySelector(".endGame").style.display = "none";
+        for (let i = 0; i < 9; i++) {
+          gameBoardMap.assignedSquares[i.toString()] = i;
+        }
+        startGameModule.activePlayer[0] = startGameModule.players[0];
+        totalMoves = 0;
+        playerXMoves = 0;
+        playerOMoves = 0;
+
+        squares.forEach((square) => {
+          square.textContent = "";
+          square.style.fontSize = "6rem";
+        });
+      });
+
       return true;
     }
   }
