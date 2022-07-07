@@ -13,7 +13,7 @@
         <span class="error"></span>
 
         <form action="#">
-          <span
+          <span class="player"
             >Player X:
             <input
               type="text"
@@ -22,7 +22,7 @@
               placeholder="Your name..."
               required
           /></span>
-          <span
+          <span class="player"
             >Player O:
             <input
               type="text"
@@ -31,11 +31,15 @@
               placeholder="Your name..."
               required
           /></span>
-          <input type="submit" id="startGame">Start game</input>
+          <input type="submit" id="startGame" value="Start game"></input>
         </form>
       </div>
     </div>
     <div class="boardContainer">
+      <div class="scoreBoard">
+        <div class="player1"><span class="player1Name">Aki</span><span class ="player1Score">1</span></div>
+        <div class="player2"><span class="player2Score">0</span><span class="player2Name">Filip</span></div>
+      </div>
       <div class="boardGrid">
         <div class="boardGrid__square" id="0"><span class="symbol"></span></div>
         <div class="boardGrid__square" id="1"><span class="symbol"></span></div>

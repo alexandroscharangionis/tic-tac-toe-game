@@ -78,9 +78,9 @@ const gameBoardController = (() => {
         `${gameBoardMap.assignedSquares[2]}`
       )
     ) {
-      document.getElementById("0").style.color = "red";
-      document.getElementById("1").style.color = "red";
-      document.getElementById("2").style.color = "red";
+      document.getElementById("0").style.fontSize = "12rem";
+      document.getElementById("1").style.fontSize = "12rem";
+      document.getElementById("2").style.fontSize = "12rem";
     } else if (
       _symbolChecker(
         `${gameBoardMap.assignedSquares[3]}`,
@@ -89,9 +89,9 @@ const gameBoardController = (() => {
       )
     ) {
       {
-        document.getElementById("3").style.color = "red";
-        document.getElementById("4").style.color = "red";
-        document.getElementById("5").style.color = "red";
+        document.getElementById("3").style.fontSize = "12rem";
+        document.getElementById("4").style.fontSize = "12rem";
+        document.getElementById("5").style.fontSize = "12rem";
       }
     } else if (
       _symbolChecker(
@@ -101,9 +101,9 @@ const gameBoardController = (() => {
       )
     ) {
       {
-        document.getElementById("6").style.color = "red";
-        document.getElementById("7").style.color = "red";
-        document.getElementById("8").style.color = "red";
+        document.getElementById("6").style.fontSize = "12rem";
+        document.getElementById("7").style.fontSize = "12rem";
+        document.getElementById("8").style.fontSize = "12rem";
       }
     } else if (
       _symbolChecker(
@@ -113,9 +113,9 @@ const gameBoardController = (() => {
       )
     ) {
       {
-        document.getElementById("0").style.color = "red";
-        document.getElementById("3").style.color = "red";
-        document.getElementById("6").style.color = "red";
+        document.getElementById("0").style.fontSize = "12rem";
+        document.getElementById("3").style.fontSize = "12rem";
+        document.getElementById("6").style.fontSize = "12rem";
       }
     } else if (
       _symbolChecker(
@@ -125,9 +125,9 @@ const gameBoardController = (() => {
       )
     ) {
       {
-        document.getElementById("1").style.color = "red";
-        document.getElementById("4").style.color = "red";
-        document.getElementById("7").style.color = "red";
+        document.getElementById("1").style.fontSize = "12rem";
+        document.getElementById("4").style.fontSize = "12rem";
+        document.getElementById("7").style.fontSize = "12rem";
       }
     } else if (
       _symbolChecker(
@@ -137,9 +137,9 @@ const gameBoardController = (() => {
       )
     ) {
       {
-        document.getElementById("2").style.color = "red";
-        document.getElementById("5").style.color = "red";
-        document.getElementById("8").style.color = "red";
+        document.getElementById("2").style.fontSize = "12rem";
+        document.getElementById("5").style.fontSize = "12rem";
+        document.getElementById("8").style.fontSize = "12rem";
       }
     } else if (
       _symbolChecker(
@@ -149,9 +149,9 @@ const gameBoardController = (() => {
       )
     ) {
       {
-        document.getElementById("0").style.color = "red";
-        document.getElementById("4").style.color = "red";
-        document.getElementById("8").style.color = "red";
+        document.getElementById("0").style.fontSize = "12rem";
+        document.getElementById("4").style.fontSize = "12rem";
+        document.getElementById("8").style.fontSize = "12rem";
       }
     } else if (
       _symbolChecker(
@@ -161,9 +161,9 @@ const gameBoardController = (() => {
       )
     ) {
       {
-        document.getElementById("6").style.color = "red";
-        document.getElementById("4").style.color = "red";
-        document.getElementById("2").style.color = "red";
+        document.getElementById("6").style.fontSize = "12rem";
+        document.getElementById("4").style.fontSize = "12rem";
+        document.getElementById("2").style.fontSize = "12rem";
       }
     } else return;
   }
