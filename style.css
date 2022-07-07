@@ -77,7 +77,39 @@ input[type="text"] {
   display: none;
   align-items: center;
   justify-content: center;
+  padding: 10rem;
   /* width: 70rem; */
+}
+
+.endGame {
+  display: none;
+  font-size: 2.6rem;
+  margin-bottom: 4rem;
+  background-color: #00b5d0;
+  padding: 1rem;
+  border: 2px solid #000;
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+#newGame {
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  /* font-weight: 700; */
+  color: #000;
+  font-family: inherit;
+  font-size: 3rem;
+}
+
+#newGame:hover {
+  font-weight: 700;
+  font-style: italic;
+  cursor: pointer;
 }
 
 .scoreBoard {

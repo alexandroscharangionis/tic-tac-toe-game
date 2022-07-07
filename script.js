@@ -20,6 +20,8 @@ const Player = (playerName, playerSymbol) => {
 
 // Module that returns an array with players and a function that creates two players based on form input value and pushes them into previously mentioned array.
 const startGameModule = (() => {
+  let playerXScore = document.querySelector(".player1Score");
+  let playerOScore = document.querySelector(".player2Score");
   let players = [];
   let activePlayer = [];
   function startGame(event) {
@@ -39,38 +41,71 @@ const startGameModule = (() => {
       activePlayer.push(players[0]);
       gameMenu.style.display = "none";
       boardContainer.style.display = "block";
+      document.querySelector(
+        ".player1Name"
+      ).textContent = `${startGameModule.players[0].playerName}`;
+      document.querySelector(
+        ".player2Name"
+      ).textContent = `${startGameModule.players[1].playerName}`;
+
+      playerXScore.textContent = "0";
+      playerOScore.textContent = "0";
+      // document.querySelector(".player1Score").textContent =
+      //   gameBoardController.playerXScore;
+      // document.querySelector(".player2Score").textContent =
+      //   gameBoardController.playerOScore;
       console.log(playerX, playerO);
     } else {
       errorMsg.textContent = "Fill in both names";
     }
   }
 
-  return { startGame, players, activePlayer };
+  return { startGame, players, activePlayer, playerXScore, playerOScore };
 })();
 
 const startGameBtn = document.getElementById("startGame");
 startGameBtn.addEventListener("click", startGameModule.startGame);
 
-// Module that returns the playerMove function
+// Module that returns the playerMove function and uses other private variables and functions.
 const gameBoardController = (() => {
   let totalMoves = 0;
   let playerXMoves = 0;
   let playerOMoves = 0;
+  let scoreX = 0;
+  let scoreO = 0;
 
   // Checks to see if three symbols are the same, and if yes, check to see if player X has more moves. If he does, he wins.
   function _symbolChecker(p1, p2, p3) {
     if (p1 === p2 && p1 === p3) {
-      playerXMoves > playerOMoves
-        ? console.log("Player X won")
-        : console.log("Player O won");
+      document.querySelector(".boardGrid").style.pointerEvents = "none";
+      document.querySelector(".endGame").style.display = "block";
+      document.getElementById("newGame").textContent = "New game?";
+      if (playerXMoves > playerOMoves) {
+        document.querySelector(
+          ".message"
+        ).textContent = `${startGameModule.players[0].playerName} won.`;
+        scoreX++;
+        startGameModule.playerXScore.textContent = scoreX;
+      } else {
+        document.querySelector(
+          ".message"
+        ).textContent = `${startGameModule.players[1].playerName} won.`;
+        scoreO++;
+        startGameModule.playerOScore.textContent = scoreO;
+      }
+      // playerXMoves > playerOMoves
+      //   ? (document.querySelector(
+      //       ".message"
+      //     ).textContent = `${startGameModule.players[0].playerName} won.`)
+      //   : (document.querySelector(
+      //       ".message"
+      //     ).textContent = `${startGameModule.players[1].playerName} won.`);
       return true;
     }
   }
 
   // Checks for each possible winning combo. If winner combo is found, symbols get special color.
   function _checkForThreeInARow() {
-    console.log("I have been triggered");
-
     if (
       _symbolChecker(
         `${gameBoardMap.assignedSquares[0]}`,
