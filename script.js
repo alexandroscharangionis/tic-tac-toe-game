@@ -42,7 +42,7 @@ const startGameModule = (() => {
       boardContainer.style.display = "block";
       console.log(playerX, playerO);
     } else {
-      errorMsg.textContent = "Fill in both names;";
+      errorMsg.textContent = "Fill in both names";
     }
   }
 
@@ -55,10 +55,17 @@ startGameBtn.addEventListener("click", startGameModule.startGame);
 // Module that returns the playerMove function
 const gameBoardController = (() => {
   let totalMoves = 0;
-  // Checks to see if three symbols are the same
+  let playerXMoves = 0;
+  let playerOMoves = 0;
+
+  // Checks to see if three symbols are the same, and if yes, check to see if player X has more moves. If he does, he wins.
   function _symbolChecker(p1, p2, p3) {
     if (p1 === p2 && p1 === p3) {
-      console.log("Somebody won");
+      playerXMoves > playerOMoves
+        ? console.log("Player X won")
+        : console.log("Player O won");
+
+      console.log(document.getElementById(`${p1}`));
     }
   }
 
@@ -113,7 +120,7 @@ const gameBoardController = (() => {
     // Checks for winner/draw after certain number of moves.
     function _checkForWinner() {
       totalMoves++;
-      console.log(totalMoves);
+      console.log(`Total moves: ${totalMoves}`);
       if (totalMoves >= 5) {
         _checkForThreeInARow();
       }
@@ -128,6 +135,8 @@ const gameBoardController = (() => {
       }
 
       startGameModule.players[0].addMoveToBoard(`${event.target.id}`);
+      playerXMoves++;
+      console.log(`Player X moves: ${playerXMoves}`);
       _checkForWinner();
 
       event.target.textContent = startGameModule.players[0].playerSymbol;
@@ -137,6 +146,8 @@ const gameBoardController = (() => {
         return;
       }
       startGameModule.players[1].addMoveToBoard(`${event.target.id}`);
+      playerOMoves++;
+      console.log(`Player O moves: ${playerOMoves}`);
       _checkForWinner();
       event.target.textContent = startGameModule.players[1].playerSymbol;
       startGameModule.activePlayer[0] = startGameModule.players[0];
