@@ -231,7 +231,6 @@ const gameBoardController = (() => {
     // Checks for winner/draw after certain number of moves.
     function _checkForWinner() {
       totalMoves++;
-      console.log(`Total moves: ${totalMoves}`);
       if (totalMoves >= 5) {
         _checkForThreeInARow();
       }
@@ -249,7 +248,6 @@ const gameBoardController = (() => {
       }
       startGameModule.players[0].addMoveToBoard(`${event.target.id}`);
       playerXMoves++;
-      console.log(`Player X moves: ${playerXMoves}`);
       _checkForWinner();
 
       event.target.textContent = startGameModule.players[0].playerSymbol;
@@ -263,7 +261,6 @@ const gameBoardController = (() => {
       }
       startGameModule.players[1].addMoveToBoard(`${event.target.id}`);
       playerOMoves++;
-      console.log(`Player O moves: ${playerOMoves}`);
       _checkForWinner();
       event.target.textContent = startGameModule.players[1].playerSymbol;
       !winner
