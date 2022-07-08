@@ -24,6 +24,8 @@ const startGameModule = (() => {
   let playerOScore = document.querySelector(".player2Score");
   let players = [];
   let activePlayer = [];
+  let playerIndicator = document.querySelector(".playerIndicator");
+
   function startGame(event) {
     event.preventDefault();
     const errorMsg = document.querySelector(".error");
@@ -50,12 +52,20 @@ const startGameModule = (() => {
 
       playerXScore.textContent = "0";
       playerOScore.textContent = "0";
+      playerIndicator.textContent = `${startGameModule.players[0].playerName}'s turn.`;
     } else {
       errorMsg.textContent = "Fill in both names";
     }
   }
 
-  return { startGame, players, activePlayer, playerXScore, playerOScore };
+  return {
+    startGame,
+    players,
+    activePlayer,
+    playerXScore,
+    playerOScore,
+    playerIndicator,
+  };
 })();
 
 const startGameBtn = document.getElementById("startGame");
@@ -76,6 +86,7 @@ const gameBoardController = (() => {
       document.querySelector(".boardGrid").style.pointerEvents = "none";
       document.querySelector(".endGame").style.display = "block";
       document.getElementById("newGame").textContent = "New game?";
+
       if (playerXMoves > playerOMoves) {
         document.querySelector(
           ".message"
@@ -104,6 +115,7 @@ const gameBoardController = (() => {
         playerXMoves = 0;
         playerOMoves = 0;
         winner = "";
+        startGameModule.playerIndicator.textContent = `${startGameModule.players[0].playerName}'s turn.`;
 
         squares.forEach((square) => {
           square.textContent = "";
@@ -235,13 +247,15 @@ const gameBoardController = (() => {
       if (event.target.textContent) {
         return;
       }
-
       startGameModule.players[0].addMoveToBoard(`${event.target.id}`);
       playerXMoves++;
       console.log(`Player X moves: ${playerXMoves}`);
       _checkForWinner();
 
       event.target.textContent = startGameModule.players[0].playerSymbol;
+      !winner
+        ? (startGameModule.playerIndicator.textContent = `${startGameModule.players[1].playerName}'s turn.`)
+        : (startGameModule.playerIndicator.textContent = "");
       startGameModule.activePlayer[0] = startGameModule.players[1];
     } else if (startGameModule.activePlayer[0] === startGameModule.players[1]) {
       if (event.target.textContent) {
@@ -252,6 +266,10 @@ const gameBoardController = (() => {
       console.log(`Player O moves: ${playerOMoves}`);
       _checkForWinner();
       event.target.textContent = startGameModule.players[1].playerSymbol;
+      !winner
+        ? (startGameModule.playerIndicator.textContent = `${startGameModule.players[0].playerName}'s turn.`)
+        : (startGameModule.playerIndicator.textContent = "");
+
       startGameModule.activePlayer[0] = startGameModule.players[0];
     }
   }
