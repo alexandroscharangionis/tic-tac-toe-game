@@ -40,7 +40,7 @@ const startGameModule = (() => {
       players.push(playerO);
       activePlayer.push(players[0]);
       gameMenu.style.display = "none";
-      boardContainer.style.display = "block";
+      boardContainer.style.display = "flex";
       document.querySelector(
         ".player1Name"
       ).textContent = `${startGameModule.players[0].playerName}`;
@@ -68,6 +68,7 @@ const gameBoardController = (() => {
   let playerOMoves = 0;
   let scoreX = 0;
   let scoreO = 0;
+  let winner = "";
 
   // Checks to see if three symbols are the same, and if yes, check to see if player X has more moves. If he does, he wins.
   function _symbolChecker(p1, p2, p3) {
@@ -81,12 +82,14 @@ const gameBoardController = (() => {
         ).textContent = `${startGameModule.players[0].playerName} won.`;
         scoreX++;
         startGameModule.playerXScore.textContent = scoreX;
+        winner = startGameModule.players[0].playerName;
       } else {
         document.querySelector(
           ".message"
         ).textContent = `${startGameModule.players[1].playerName} won.`;
         scoreO++;
         startGameModule.playerOScore.textContent = scoreO;
+        winner = startGameModule.players[1].playerName;
       }
 
       // Reset some variables in order to start new game but keep score
@@ -100,6 +103,7 @@ const gameBoardController = (() => {
         totalMoves = 0;
         playerXMoves = 0;
         playerOMoves = 0;
+        winner = "";
 
         squares.forEach((square) => {
           square.textContent = "";
@@ -219,8 +223,11 @@ const gameBoardController = (() => {
       if (totalMoves >= 5) {
         _checkForThreeInARow();
       }
-      if (totalMoves >= 8) {
-        console.log("Its a draw");
+      if (totalMoves === 9 && winner === "") {
+        document.querySelector(".boardGrid").style.pointerEvents = "none";
+        document.querySelector(".endGame").style.display = "block";
+        document.getElementById("newGame").textContent = "New game?";
+        document.querySelector(".message").textContent = `It's a draw`;
       }
     }
 
